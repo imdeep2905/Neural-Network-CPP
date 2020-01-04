@@ -5,7 +5,7 @@
 using namespace std;
 int main()
 {
-   NN n({784,200,10},"tanh",0.3,1);
+   NN n({784,200,10},"sigmoid",0.3,1);
    cout<<n.Fit("H:/ML/Neural_network_V2/MNIST_train.txt")<<endl;
    cout<<n.Test("H:/ML/Neural_network_V2/MNIST_test.txt")<<endl;
    n.SaveModel();
