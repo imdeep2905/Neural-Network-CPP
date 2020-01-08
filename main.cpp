@@ -5,18 +5,19 @@
 using namespace std;
 int main()
 {
-   NN n({784,200,10},"sigmoid",0.3,1);
-   cout<<n.Fit("H:/ML/Neural_network_V2/MNIST_train.txt")<<endl;
-   cout<<n.Test("H:/ML/Neural_network_V2/MNIST_test.txt")<<endl;
+   /*Constructor
+   NN({n1,n2...nn} - number of neurons in each layer, 
+   activationfunction , learning rate , epochs )
+   */
+   //Formation for XOR
+   NN n({2,4,2},"sigmoid",0.1,1500);
+   cout<<n.Fit("XOR.txt")<<endl;
+   cout<<n.Test("XOR.txt")<<endl;
    n.SaveModel();
-   
-   //Constructor
-   //NN({n1,n2...nn} , activationfunction , learning rate , epochs )
-   // NN n({8,2,2},0.3,5);
-   // cout<<n.Fit("H:/ML/Neural_network_V2/Test_datasets/HTRU2/HTRU_train.txt")<<endl;
-   // cout<<n.Test("H:/ML/Neural_network_V2/Test_datasets/HTRU2/HTRU_test.txt")<<endl;
-   // n.SaveModel();
-   // n.LoadModel("HTRU.model");
-   // cout<<n.Test("HTRU_test.txt")<<endl;   
-    return 0;
+   /*
+    To load model 
+   n.LoadModel("XOR.model");
+   cout<<n.Test("XOR.txt")<<endl;
+   */
+   return 0;
 }
