@@ -23,7 +23,7 @@ class Matrix
             //Setting Random values
             for(int i=0;i<row;i++)
                 for(int j=0;j<col;j++)
-                    mat[i][j]=GetRandomNum();
+                    mat[i][j]=GetRandomNum(sqrt(1/double(col)));
         }
         Matrix(int r,int c,double v)
         {
