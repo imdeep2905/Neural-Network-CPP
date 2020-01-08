@@ -74,6 +74,8 @@ void NN::BackPropogation(Matrix target)
         grad=grad.MultiplySame(layers[i+1].ApplyDActivationFunction());
         grad=grad.Multiply(layers[i].Transpose());
         edges[i]=edges[i]+grad;
+        //grad.PrintMatrix();
+        //_sleep(5000);
         //biases[i][0]+=; // Bias is remaining
     }
 }
@@ -88,6 +90,7 @@ double NN::Fit(string file_name)
     target.resize(layers[layers_in_NN-1].row);
     for(int ie=0;ie<epochs;ie++)
     {
+        auto start=chrono::steady_clock::now();
         total=0;
         right=0;
         in_file.open(file_name.c_str());
@@ -104,11 +107,14 @@ double NN::Fit(string file_name)
             if(acc==1)
                 right++;    
          //   cout<<errors[layers_in_NN-1].GetLoss()<<endl;
-          //  if(total==5000)
-           //   break;
+           // if(total%1000==0)
+            // cout<<double(right)/double(total)<<endl;
         }
         in_file.close();
-        printf("Epoch No. %d Completed. Accuracy : %lf\n",ie+1,double(right)/double(total));
+        auto stop=chrono::steady_clock::now();
+        auto diff=stop-start;
+        printf("Epoch No. %d Completed. Accuracy : %lf ",ie+1,double(right)/double(total));
+        cout<<"(Completed In : "<<(chrono::duration <double, milli> (diff).count())/1000<<" Seconds ) "<<endl;
     }
     return double(right)/double(total);
 }
@@ -124,6 +130,7 @@ double NN::Test(string file_name)
     total=0;
     right=0;
     in_file.open(file_name.c_str());
+    auto start=chrono::steady_clock::now();
         while(!in_file.eof())
         {
             total++;
@@ -135,10 +142,13 @@ double NN::Test(string file_name)
            // errors[layers_in_NN-1]=Matrix(target)-layers[layers_in_NN-1];
             if(layers[layers_in_NN-1].CalculateAccuracy(Matrix(target))==1)
                 right++;    
-           // if(total==10)
+            //if(total==10)
             //   break;
         }
-        cout<<"Testing Done !!! Accuracy : "<<double(right)/double(total)<<endl;
+        auto stop=chrono::steady_clock::now();
+        auto diff=stop-start;
+        cout<<"Testing Done !!! Accuracy : "<<double(right)/double(total);
+        cout<<" (Completed In : "<<(chrono::duration <double, milli> (diff).count())/1000<<" Seconds ) "<<endl;
         in_file.close();
     return double(right)/double(total);
 }
