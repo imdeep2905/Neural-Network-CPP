@@ -8,6 +8,7 @@
 #include <set>
 #include <cmath>
 #include <ctime>
+#include <chrono>
 #include <fstream>
 #define ll long long
 using namespace std;
@@ -30,9 +31,9 @@ double Relu(double x)
 }
 double DRelu(double x)
 {
-    if(x<=0)
-        return 0;
-    return 1;
+    if(x>=0)
+        return 1;
+    return 0;
 }
 double Tanh(double x)
 {
@@ -52,12 +53,19 @@ double DSoftPlus(double x)
     temp=1/(temp-1);
     return 1/(1+temp);
 }
-double GetRandomNum()
+double GetRandomNum(double range)
 {
     srand(time(nullptr)+rand()); 
-    double num=rand()%13;//Prime number for better distribution of random numbers
-    while(num>0.005)
-        num/=2.1;
+    int n=rand();//Prime number for better distribution of random numbers
+    if(n%2!=0)
+        n*=-1;
+    double num=double(n);
+    while(1)
+    {
+        if(num<=range && num>=(-1*range))
+            break;
+        num/=5;
+    }
     return num;
 }
 void SetFunctions(string f)
@@ -79,9 +87,14 @@ void SetFunctions(string f)
         ActivationFunction=Tanh;
         DActivationFunction=DTanh;
     }
+    else if(f=="softplus")
+    {
+        ActivationFunction=SoftPlus;
+        DActivationFunction=DSoftPlus;
+    }
     else 
     {
-        cout<<"ERROR : Invalid Function Argument , Default Set : <Sigmoid >"<<endl;
+        cout<<"ERROR : Invalid Function Argument , Default Set : < Sigmoid >"<<endl;
         ActivationFunction=Sigmoid;
         DActivationFunction=DSigmoid;
     }
