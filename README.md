@@ -76,3 +76,6 @@ For Example:\
 NN n();
 n.LoadModel();
 ```
+This will Load pre trained Model.
+## Conclusion
+If you face any issues inform me. I'll try my best to resolve it.\
