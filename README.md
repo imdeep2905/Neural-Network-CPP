@@ -78,4 +78,5 @@ n.LoadModel();
 ```
 This will Load pre trained Model.
 ## Conclusion
-If you face any issues inform me. I'll try my best to resolve it.\
+If you face any issues inform me via **Issues Section**. I'll try my best to resolve it.
+Thanks for Reading this XD.
