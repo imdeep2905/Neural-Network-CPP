@@ -74,9 +74,6 @@ void NN::BackPropogation(Matrix target)
         grad=grad.MultiplySame(layers[i+1].ApplyDActivationFunction());
         grad=grad.Multiply(layers[i].Transpose());
         edges[i]=edges[i]+grad;
-        //grad.PrintMatrix();
-        //_sleep(5000);
-        //biases[i][0]+=; // Bias is remaining
     }
 }
 double NN::Fit(string file_name)
