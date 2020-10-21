@@ -30,7 +30,10 @@ static void test() {
     return;
 }
 
-/** Driver Code */
+/**
+ * @brief Main function
+ * @returns 0 on exit
+ */
 int main() {
     // Testing
     test();

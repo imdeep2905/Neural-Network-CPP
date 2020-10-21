@@ -667,7 +667,6 @@ class NeuralNetwork {
         }
         /**
             Format in which model is saved:
-
             total_layers
             neurons(1st neural_network::layers::DenseLayer) activation_name(1st
            neural_network::layers::DenseLayer) kernel_shape(1st
@@ -678,7 +677,6 @@ class NeuralNetwork {
             neurons(Nth neural_network::layers::DenseLayer) activation_name(Nth
            neural_network::layers::DenseLayer) kernel_shape(Nth
            neural_network::layers::DenseLayer) kernel_value
-
             For Example, pretrained model with 3 layers:
             <pre>
             3
@@ -797,4 +795,3 @@ class NeuralNetwork {
 };
 }  // namespace neural_network
 }  // namespace machine_learning
-
